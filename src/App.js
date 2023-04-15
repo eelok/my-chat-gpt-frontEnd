@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app-container">
+        <div className="spotlight__wrapper">
+          <input
+            type="text"
+            className="spotlight__input"
+            placeholder="Ask me anything...."
+            // style={{ backgroundImage: `urs(${lens})` }}
+          />
+          <div className="spotlight__answer">
+            Dubai is a desert city and has a warm and sunny climate throughout
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
