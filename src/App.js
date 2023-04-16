@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
   const [prompt, updatePrompt] = useState(undefined);
-  const [loadin, setLoading] = useState(false);
   const [answer, setAnswer] = useState(undefined);
+
+  useEffect(() => {
+    if (prompt != null && prompt.trim() === '') {
+      setAnswer(undefined);
+    }
+  }, [prompt]);
 
   const handleChange = (event) => {
     updatePrompt(event.target.value);
@@ -15,7 +20,6 @@ function App() {
       return;
     }
     try {
-      setLoading(true);
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -29,8 +33,6 @@ function App() {
       setAnswer(message);
     } catch (err) {
       console.log('err', err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -45,9 +47,7 @@ function App() {
             onChange={handleChange}
             onKeyDown={(e) => sendPrompt(e)}
           />
-          <div className="spotlight__answer">
-            {answer && <p>{answer}</p>}
-          </div>
+          <div className="spotlight__answer">{answer}</div>
         </div>
       </div>
     </div>
