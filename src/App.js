@@ -2,14 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [prompt, updatePrompt] = useState(undefined);
-  const [answer, setAnswer] = useState(undefined);
-
-  useEffect(() => {
-    if (prompt != null && prompt.trim() === '') {
-      setAnswer(undefined);
-    }
-  }, [prompt]);
+  const [prompt, updatePrompt] = useState('');
+  const [answer, setAnswer] = useState('');
 
   const handleChange = (event) => {
     updatePrompt(event.target.value);
@@ -30,7 +24,9 @@ function App() {
         throw new Error('Something went wrong');
       }
       const { message } = await reply.json();
+      event.preventDefault();
       setAnswer(message);
+      updatePrompt('');
     } catch (err) {
       console.log('err', err);
     }
@@ -41,6 +37,7 @@ function App() {
       <div className="app-container">
         <div className="spotlight__wrapper">
           <input
+            value={prompt}
             type="text"
             className="spotlight__input"
             placeholder="Ask me anything...."
