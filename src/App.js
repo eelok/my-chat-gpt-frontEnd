@@ -52,10 +52,17 @@ function App() {
   return (
     <div className="app">
       <div className="app-container">
-        <div>
+        <div className="conversation__wrapper">
           {conversation.map((item) => (
-            <div key={item.id}>
-              {item.question}: {item.answer}
+            <div className="conversation__line" key={item.id}>
+              <tr>
+                <th className="conversation__header">Your questions:</th>
+                <tb className="conversation__text">{item.question} </tb>
+              </tr>
+              <tr>
+                <th className="conversation__header">Answer:</th>
+                <tb className="conversation__text">{item.answer}</tb>
+              </tr>
             </div>
           ))}
         </div>
